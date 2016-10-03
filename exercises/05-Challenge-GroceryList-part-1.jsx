@@ -50,7 +50,6 @@ class GroceryListItem extends React.Component {
   }
 
   render() {
-        console.log(this.props)
     return (
         <li key={this.props.index}>
           {this.props.grocery}
