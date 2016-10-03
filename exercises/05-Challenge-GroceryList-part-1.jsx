@@ -27,7 +27,8 @@ class GroceryList extends React.Component {
     for(var index = 0; index < this.state.groceries.length; index++) {
       groceriesComponents.push(
           <GroceryListItem
-            grocery={this.state.groceries[index]}
+            grocery={this.state.groceries[index].name}
+            index={index+1}
           />
       );
     }
@@ -35,7 +36,7 @@ class GroceryList extends React.Component {
     // Hint: Don't forget about putting items into `ul`
     return (
       <div>
-        // Put your code here
+        <ul>{groceriesComponents}</ul>
       </div>
     );
   }
@@ -49,9 +50,10 @@ class GroceryListItem extends React.Component {
   }
 
   render() {
+        console.log(this.props)
     return (
-        <li>
-          // Put your code here.
+        <li key={this.props.index}>
+          {this.props.grocery}
         </li>
     );
   }
