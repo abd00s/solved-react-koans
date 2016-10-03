@@ -44,6 +44,11 @@ class GroceryList extends React.Component {
   // Hint #3: Name of the new grocery item will be stored in `this.state.newGroceryName`.
   addGroceryItem() {
     // Put your code here
+    if (this.state.newGroceryName.length != 0){
+      this.setState({
+        groceries: this.state.groceries.concat([{name: this.state.newGroceryName}])
+      })
+    }
   }
 
   render() {
@@ -55,6 +60,7 @@ class GroceryList extends React.Component {
       groceriesComponents.push(
           <GroceryListItem
             grocery={this.state.groceries[index]}
+            index={index+1}
           />
       );
     }
@@ -62,13 +68,15 @@ class GroceryList extends React.Component {
     // Here are components for task #2.
     newProductInput = <input className='new-item' type="text" onChange={this.inputChanged}/>;
     // Something is missing here... Will anything happen if you click this button now?
-    newProductAddButton = <button className='add-product'>Add new Product</button>;
+    newProductAddButton = <button className='add-product' onClick={this.addGroceryItem}>Add new Product</button>;
 
     return (
       <div>
         <ul>
           {groceriesComponents}
         </ul>
+        {newProductInput}
+        {newProductAddButton}
       </div>
     );
   }
@@ -80,7 +88,11 @@ class GroceryListItem extends React.Component {
   }
 
   render() {
-    return (<li>{this.props.grocery.name}</li>);
+    return (
+      <li key={this.props.index}>
+        {this.props.grocery.name}
+      </li>
+    );
   }
 }
 
